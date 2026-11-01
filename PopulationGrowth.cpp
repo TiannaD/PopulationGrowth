@@ -16,12 +16,9 @@ int main() {
 
 	cin >> startingPopulation >> percentIncrease >> numberDays;
 	double percent = percentIncrease / 100;
-	double dailyIncrease = startingPopulation * pow((1 + percent), numberDays) - startingPopulation;
+	double finalPopulation = startingPopulation * pow((1 + percent), numberDays) - startingPopulation;
 	double newPopulation = 0;
-	double dailyTotal = dailyIncrease + previousPopulation;
-
-	//Debug line
-	cout << startingPopulation << endl << percent << endl << numberDays << endl << dailyIncrease;
+	double dailyTotal = (startingPopulation * percent) + startingPopulation;
 
 	//Validations
 	if (startingPopulation < 2) {
@@ -34,18 +31,17 @@ int main() {
 		cout << "Invalid number of days. Exiting...";
 	}
 
-	newPopulation = startingPopulation + dailyIncrease;
-	previousPopulation = newPopulation;
+	//Day 1
+	cout << "Day 1: " << "Starting population: " << startingPopulation << endl << endl;
+	previousPopulation = startingPopulation;
 
-
-
-
-	//for (int i=0; i < numberDays; i++) {
-		//cout << "Day " << i+1 << ": " << endl;
-		//for (int in = 0; i < numberDays; i++) {
-
-		//}
-	//}
+	//Day loop
+	for (int i = 0; i < numberDays - 1; i++) {
+		dailyTotal = (previousPopulation * percent);
+		newPopulation = dailyTotal + previousPopulation;
+		previousPopulation = newPopulation;
+		cout << "Day " << i +2 << " : " << newPopulation << endl << endl;
+	}
 
 	return 0;
 }
