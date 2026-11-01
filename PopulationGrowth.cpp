@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -8,13 +9,19 @@ int main() {
 
 	//vars/consts
 	double startingPopulation = 0;
+	double previousPopulation = 0;
+
 	double percentIncrease = 0;
 	double numberDays = 0;
 
 	cin >> startingPopulation >> percentIncrease >> numberDays;
 	double percent = percentIncrease / 100;
+	double dailyIncrease = startingPopulation * pow((1 + percent), numberDays) - startingPopulation;
+	double newPopulation = 0;
+	double dailyTotal = dailyIncrease + previousPopulation;
 
-	cout << startingPopulation << endl << percent << endl << numberDays << endl;
+	//Debug line
+	cout << startingPopulation << endl << percent << endl << numberDays << endl << dailyIncrease;
 
 	//Validations
 	if (startingPopulation < 2) {
@@ -27,9 +34,18 @@ int main() {
 		cout << "Invalid number of days. Exiting...";
 	}
 
-	for (int i=0; i < numberDays; i++) {
-		cout << "Day " << i+1 << endl;
-	}
+	newPopulation = startingPopulation + dailyIncrease;
+	previousPopulation = newPopulation;
+
+
+
+
+	//for (int i=0; i < numberDays; i++) {
+		//cout << "Day " << i+1 << ": " << endl;
+		//for (int in = 0; i < numberDays; i++) {
+
+		//}
+	//}
 
 	return 0;
 }
